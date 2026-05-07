@@ -41,11 +41,12 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         musicSource.clip = musicClip;
+        musicSource.loop = true;
         if (SettingsManager.Instance.musicEnabled)
         {
             musicSource.Play();
         }
-        if(SettingsManager.Instance.sfxEnabled)
+        if (SettingsManager.Instance.sfxEnabled)
         {
             sfxEnabled = true;
         }
@@ -69,11 +70,18 @@ public class AudioManager : MonoBehaviour
     {
         if (isOn)
         {
-            musicSource.Play();
+            if (!musicSource.isPlaying)
+            {
+                musicSource.Play();
+            }
+            else
+            {
+                musicSource.UnPause();
+            }
         }
         else
         {
-            musicSource.Stop();
+            musicSource.Pause();
         }
     }
     private void HandleSFXChange(bool obj)

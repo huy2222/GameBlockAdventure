@@ -13,5 +13,6 @@ public class WatchAdsToContinueButton : MonoBehaviour
     private void OnWatchAdsToContinueButtonClicked()
     {
         AdsManager.Instance.ShowRewardedAd();
+        watchAdsToContinueButton.interactable = false; 
     }
 }
